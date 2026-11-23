@@ -1,8 +1,5 @@
 # Лабораторна робота №4: Раціональні числа та Калькулятор (Swift)
 
-![Swift](https://img.shields.io/badge/Swift-5.x-orange?logo=swift&logoColor=white)
-![Paradigm](https://img.shields.io/badge/OOP-Classes%20%26%20Protocols-blue)
-![Pattern](https://img.shields.io/badge/Pattern-Singleton-green)
 
 Практична реалізація об'єктно-орієнтованої моделі для роботи зі звичайними дробами (`Rational`) та калькулятора (`Calculator`), який підтримує базові арифметичні дії та обчислення складних виразів з урахуванням пріоритету операцій.
 
@@ -10,58 +7,17 @@
 
 ## Зміст
 
-1. [Огляд архітектури](#огляд-архітектури)
-2. [Опис компонентів](#опис-компонентів)
+1. [Опис компонентів](#опис-компонентів)
    - [Протокол `Copyable`](#протокол-copyable)
    - [Клас `Rational`](#клас-rational)
    - [Клас `Calculator`](#клас-calculator)
-3. [Обчислення виразів із пріоритетом операцій](#обчислення-виразів-із-пріоритетом-операцій)
-4. [Приклади використання](#приклади-використання)
-5. [Результат роботи програми](#результат-роботи-програми)
-6. [Структура та запуск](#структура-та-запуск)
+2. [Обчислення виразів із пріоритетом операцій](#обчислення-виразів-із-пріоритетом-операцій)
+3. [Приклади використання](#приклади-використання)
+4. [Результат роботи програми](#результат-роботи-програми)
+5. [Структура та запуск](#структура-та-запуск)
 
 ---
 
-## Огляд архітектури
-
-Програма побудована на взаємодії протоколу копіювання та двох `final`-класів. Нижче наведено схему їхніх зв'язків (автоматично відображається на GitHub):
-
-```mermaid
-classDiagram
-    class Copyable {
-        <<protocol>>
-        +copy() Self
-    }
-    class Rational {
-        +Int numerator
-        +Int denominator
-        +Double decimalValue
-        +Bool isZero
-        +Rational reduced
-        +String description
-        +init(numerator:denominator:)
-        +copy() Rational
-        +adding(_:) Rational
-        +subtracting(_:) Rational
-        +multiplying(by:) Rational
-        +dividing(by:) Rational
-    }
-    class Calculator {
-        +Calculator shared$
-        +Rational? leftOperand
-        +Rational? rightOperand
-        +Rational? lastResult
-        +add(_:_:) Rational$
-        +subtract(_:_:) Rational$
-        +multiply(_:_:) Rational
-        +divide(_:_:) Rational
-        +evaluate(numbers:operations:) Rational
-    }
-    Copyable <|.. Rational
-    Calculator --> Rational : оперує та зберігає копії
-```
-
----
 
 ## Опис компонентів
 
